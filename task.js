@@ -1,23 +1,18 @@
- var calculation = function(operationName, valueOfX, valueOfY) {
-      if(operationName == 'add')
-        return valueOfX + valueOfY;
-      else if(operationName == 'sub')
-        return valueOfX - valueOfY;
-      else if(operationName == 'mul')
-        return valueOfX * valueOfY;
-      else if(operationName == 'div')
-        return valueOfX / valueOfY
-    } 
-    var operation = function(operationName){
-      x = document.getElementById("valueOfX").value
-      y = document.getElementById("valueOfY").value
-      if((x*1 == x) && (y*1 == y))
-      {  
-         output = calculation(operationName, parseInt(x), parseInt(y));
-         document.getElementById("resultHere").innerHTML = output; 
-      }
-      else
-      {
-        document.getElementById("resultHere").innerHTML = "Given Input is not a number";
-      }
-      };
+const form = document.getElementById("form");
+const totalBill = document.getElementById("bill");
+
+const tipPercentage = document.getElementById("percentage");
+const percentageOutput = document.getElementById("percentage-output");
+const output = document.getElementById("output");
+const output1 = document.getElementById("output1");
+form.addEventListener("change", calculateTip);
+tipPercentage.oninput = calculateTip;
+
+function calculateTip() {
+       const tipAmount = ((totalBill.value * (tipPercentage.value / 100))); 
+        const totaltip = (parseInt(totalBill.value) + parseInt(tipAmount));
+        output1.innerText =`Total Tip  ${totaltip}`;
+        output.innerText =`Tip Amount ${tipAmount}`;
+       percentageOutput.innerText = `${tipPercentage.value}%`;
+   }
+calculateTip();
